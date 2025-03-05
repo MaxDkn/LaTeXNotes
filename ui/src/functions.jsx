@@ -8,7 +8,6 @@ export function escapeHtml(text) {
         .replace(/>/g, "&gt;");
 }
 
-// Convertit le texte en HTML en interprétant uniquement les portions LaTeX correctement délimitées par $...$
 export function parseMathTextToHtml(text) {
     if (typeof text !== 'string') return text;
     // Découpe le texte en morceaux en séparant les portions $...$

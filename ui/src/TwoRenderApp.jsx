@@ -1,13 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { parseMathTextToHtml, parseMathText } from "./functions";
 
+
+const useIsMobile = () => {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const userAgent = typeof window.navigator === 'undefined' ? '' : navigator.userAgent;
+        const mobile = /iPhone|iPad|iPod|Android/i.test(userAgent);
+        setIsMobile(mobile);
+    }, []);
+
+    return isMobile;
+};
+
+
 function TwoRenderApp() {
     const getInitialTheme = () => localStorage.getItem("theme") || "system";
 
     const [theme, setTheme] = useState(getInitialTheme());
-    const [note, setNote] = useState("Voici un exemple d'équation : $\\displaystyle f'(x) = \\lim_{\\Delta x \\to 0} \\frac{f(x+\\Delta x) - f(x)}{\\Delta x}$");
+    const [note, setNote] = useState("$\\displaystyle f'(x) = \\lim_{\\Delta x \\to 0} \\frac{f(x+\\Delta x) - f(x)}{\\Delta x}$");
     const [copied, setCopied] = useState(false);
-    const [fullscreen, setFullscreen] = useState(true);
+    const [fullscreen, setFullscreen] = useState(useIsMobile());
 
     useEffect(() => {
         const applyTheme = (selectedTheme) => {
@@ -47,7 +61,6 @@ function TwoRenderApp() {
                                 <path fillRule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/>
                             </svg>
                         </button>
-                        {/* Hide fullscreen toggle button on mobile */}
                         <button className="btn btn-sm btn-outline-secondary d-none d-sm-inline" onClick={toggleFullscreen}>
                             {fullscreen ? (
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-fullscreen-exit" viewBox="0 0 16 16">
