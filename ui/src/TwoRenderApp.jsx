@@ -37,7 +37,7 @@ function TwoRenderApp() {
     };
 
     return (
-        <div className={fullscreen ? "container-fluid h-100" : "container mt-5"} style={fullscreen ? { padding: '1rem' } : {}}>
+        <div className={fullscreen ? "container-fluid h-100" : "container mt-5"} style={fullscreen ? { padding: '0rem' } : {}}>
             <div className={fullscreen ? "card h-100" : "card"}>
                 <div className="card-header d-flex align-items-center justify-content-between">
                     <div className="d-flex gap-2">
