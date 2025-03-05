@@ -7,7 +7,7 @@ function TwoRenderApp() {
     const [theme, setTheme] = useState(getInitialTheme());
     const [note, setNote] = useState("Voici un exemple d'équation : $\\displaystyle f'(x) = \\lim_{\\Delta x \\to 0} \\frac{f(x+\\Delta x) - f(x)}{\\Delta x}$");
     const [copied, setCopied] = useState(false);
-    const [fullscreen, setFullscreen] = useState(false);
+    const [fullscreen, setFullscreen] = useState(true);
 
     useEffect(() => {
         const applyTheme = (selectedTheme) => {
